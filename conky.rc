@@ -60,7 +60,7 @@ conky.config = {
 
 conky.text = [[
 $color${font Ubuntu:size=11}${time %e %B %Y   %A    }${color3}${time    %H:%M }
-#$color1${hr 3}
+#$color1${hrhttps://github.com/linofex/My_conky_conf.git 3}
 #${time %d}.$color3${time %m}$color${font Ubuntu:size=12}.${time %G}${font}
 $color${hr 1}
 ${color2}${font Ubuntu:size=10}WEATHER${font} ${hr 2}
@@ -133,17 +133,19 @@ ${downspeedgraph wlp3s0 20,140 000000 ffffff} ${alignr}${upspeedgraph wlp3s0
 Total: ${totaldown wlp3s0} ${alignr}Total: ${totalup eth0wlp3s0}
 $color${hr 2}
 
-${color0}${font Ubuntu:size=10}TO DO LIST${font} $color3${execi 30 wc -l /home/linofex/TODO.txt | cut -c1-2} $color${hr 2}$color
-${color1}${execi 30 cat /home/linofex/TODO.txt}
-$color${hr 2}
-#${rss http://feeds.reuters.com/reuters/topNews 1 item_titles 8}
 ${if_running spotify}\
 ${color0}${font Ubuntu:size=10}MUSIC ${font}$color${hr 2}$color
 	#${voffset -38}
-	${image ~/.scripts/spotify_icon.png -p 10,830 -s 30x30}\
+	${image ~/.scripts/spotify_icon.png -p 10,759 -s 30x30}\
 	${goto 50}${color3}Title:  ${color} ${exec ~/.scripts/title.sh}${font}${voffset 12}\
 	${goto 50}${color3}Artist:${color} ${exec ~/.scripts/artist.sh}${font}${voffset -0}
 $color${hr 2}
 ${endif}\
+
+${color0}${font Ubuntu:size=10}TO DO LIST${font} $color3${execi 30 wc -l /home/linofex/TODO.txt | cut -c1-2} $color${hr 2}$color
+${color1}${execi 30 cat /home/linofex/TODO.txt}
+$color${hr 2}
+#${rss http://feeds.reuters.com/reuters/topNews 1 item_titles 8}
+
 
 ]];
