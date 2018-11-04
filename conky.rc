@@ -137,6 +137,13 @@ ${color0}${font Ubuntu:size=10}TO DO LIST${font} $color3${execi 30 wc -l /home/l
 ${color1}${execi 30 cat /home/linofex/TODO.txt}
 $color${hr 2}
 #${rss http://feeds.reuters.com/reuters/topNews 1 item_titles 8}
-
+${if_running spotify}\
+${color0}${font Ubuntu:size=10}MUSIC ${font}$color${hr 2}$color
+	#${voffset -38}
+	${image ~/.scripts/spotify_icon.png -p 10,830 -s 30x30}\
+	${goto 50}${color3}Title:  ${color} ${exec ~/.scripts/title.sh}${font}${voffset 12}\
+	${goto 50}${color3}Artist:${color} ${exec ~/.scripts/artist.sh}${font}${voffset -0}
+$color${hr 2}
+${endif}\
 
 ]];
