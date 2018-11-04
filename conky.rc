@@ -36,6 +36,7 @@ conky.config = {
 	draw_outline = false,
 	draw_borders = false,
 	draw_graph_borders = false,
+	default_bar_width = 50,
 
 -- Text settings #
 	use_xft = true,
@@ -54,11 +55,6 @@ conky.config = {
 -- Lua Load  #
 --lua_load ~/.conky/rings0-v1.2.1.lua
 --lua_draw_hook_pre ring_stats
-
-	own_window_argb_visual = false,
-	own_window_colour = '#000000',
-
-	default_bar_width = 50,
 
 };
 
