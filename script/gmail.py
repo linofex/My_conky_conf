@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import urllib.request
-email = "alessandronoferi@gmail.com"
-password = 'uxdkaaimdnlilros'
+email = "mymail"
+password = 'mypassword'
 
 # Set up authentication for gmail
 auth_handler = urllib.request.HTTPBasicAuthHandler()
