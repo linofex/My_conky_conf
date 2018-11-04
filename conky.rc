@@ -68,10 +68,10 @@ $color${font Ubuntu:size=11}${time %e %B %Y   %A    }${color3}${time    %H:%M }
 #${time %d}.$color3${time %m}$color${font Ubuntu:size=12}.${time %G}${font}
 $color${hr 1}
 ${color2}${font Ubuntu:size=10}WEATHER${font} ${hr 2}
-${color2}Paganico:${color1} ${execi 300 ./.script/.weather.sh "EUR|IT|IT52|Paganico"}
-${color2}Grosseto:${color1} ${execi 300 ./.script/.weather.sh "EUR|IT|Grosseto"}
-${color2}Pisa:        ${color1} ${execi 300 ./.script/.weather.sh "EUR|IT|Pisa"}
-#${color3}Gmail:${color1}       ${execi 180 python3 ./.script/.gmail.py}
+${color2}Paganico:${color1} ${execi 300 ./.scripts/weather.sh "EUR|IT|IT52|Paganico"}
+${color2}Grosseto:${color1} ${execi 300 ./.scripts/weather.sh "EUR|IT|Grosseto"}
+${color2}Pisa:        ${color1} ${execi 300 ./.scripts/weather.sh "EUR|IT|Pisa"}
+${color3}Gmail:${color1}       ${execi 180 python3 ./.scripts/gmail.py}
 $color${hr 2}
 
 ${color2}${font Ubuntu:size=10}SYSTEM${font} ${hr 2}
