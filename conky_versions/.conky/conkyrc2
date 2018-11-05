@@ -67,10 +67,10 @@ $color${font Ubuntu:size=11}${time %e %B %Y   %A    }${color3}${time    %H:%M }
 #${time %d}.$color3${time %m}$color${font Ubuntu:size=12}.${time %G}${font}
 $color${hr 1}
 ${color2}${font Ubuntu:size=10}WEATHER${font} ${hr 2}
-${color2}Paganico:${color1} ${execi 300 /home/linofex/.conky/scripts/weather.sh "EUR|IT|IT52|Paganico"}
-${color2}Grosseto:${color1} ${execi 300 /home/linofex/.conky/scripts/weather.sh "EUR|IT|Grosseto"}
-${color2}Pisa:        ${color1} ${execi 300 /home/linofex/.conky/scripts/weather.sh "EUR|IT|Pisa"}
-${color3}Gmail:${color1}       ${execi 180 python3 /home/linofex/.conky/scripts/gmail.py}
+${color2}Paganico:${color1} ${execi 300 ~/.conky/scripts/weather.sh "EUR|IT|IT52|Paganico"}
+${color2}Grosseto:${color1} ${execi 300 ~/.conky/scripts/weather.sh "EUR|IT|Grosseto"}
+${color2}Pisa:        ${color1} ${execi 300 ~/.conky/scripts/weather.sh "EUR|IT|Pisa"}
+${color3}Gmail:${color1}       ${execi 180 python3 ~/.conky/scripts/gmail.py}
 $color${hr 2}
 
 ${color2}${font Ubuntu:size=10}SYSTEM${font} ${hr 2}
@@ -139,13 +139,13 @@ $color${hr 2}
 ${if_running spotify}\
 ${color0}${font Ubuntu:size=10}MUSIC ${font}$color${hr 2}$color
 	#${voffset -38}
-	${image /home/linofex/.conky/scripts/spotify_icon.png -p 10,759 -s 30x30}\
-	${goto 50}${color3}Title:  ${color} ${exec /home/linofex/.conky/scripts/title.sh}${font}${voffset 12}\
-	${goto 50}${color3}Artist:${color} ${exec /home/linofex/.conky/scripts/artist.sh}${font}${voffset -0}
+	${image ~/.conky/scripts/spotify_icon.png -p 10,759 -s 30x30}\
+	${goto 50}${color3}Title:  ${color} ${exec ~/.conky/scripts/title.sh}${font}${voffset 12}\
+	${goto 50}${color3}Artist:${color} ${exec ~/.conky/scripts/artist.sh}${font}${voffset -0}
 $color${hr 2}
 ${endif}\
 
-${color0}${font Ubuntu:size=10}TO DO LIST${font} $color3${execi 30 wc -l /home/linofex/TODO.txt | cut -c1-2} $color${hr 2}$color
+${color0}${font Ubuntu:size=10}TO DO LIST${font} $color3${execi 300 wc -l /home/linofex/TODO.txt | cut -c1-2} $color${hr 2}$color
 ${color1}${execi 30 cat /home/linofex/TODO.txt}
 $color${hr 2}
 #${rss http://feeds.reuters.com/reuters/topNews 1 item_titles 8}
