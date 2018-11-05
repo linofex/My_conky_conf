@@ -1,0 +1,132 @@
+# Conky settings #
+	background no
+	update_interval  1	
+	cpu_avg_samples  2
+	net_avg_samples  2
+	double_buffer yes
+	no_buffers yes
+
+	text_buffer_size 2048
+	#imlib_cache_size 0
+
+	temperature_unit celsius
+
+	# Window specifications #
+	own_window_class Conky
+	own_window yes #prima era yes
+	own_window_type normal
+	#own_window_argb_value 0
+	own_window_transparent yes
+	own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+	border_inner_margin 0
+	border_outer_margin 0
+
+	minimum_size 235 500
+	maximum_width 380
+
+	alignment top_right
+	gap_x 0
+	gap_y 0
+
+	# Graphics settings #
+	draw_shades no
+	draw_outline no
+	draw_borders no
+	draw_graph_borders no
+
+	# Text settings #
+	use_xft yes
+	override_utf8_locale yes
+	xftfont Ubuntu:size=10
+	xftalpha 0.8
+	uppercase no
+
+	temperature_unit celsius
+
+	default_color FFFFFF
+	color1 727272
+	color2 FFFFFF
+	color3 FFFFFF
+
+	# Lua Load  #
+	#lua_load ~/.conky/rings0-v1.2.1.lua
+	#lua_draw_hook_pre ring_stats
+
+	own_window_argb_visual no
+	own_window_colour 000000
+	
+	default_bar_width 1
+
+TEXT
+${color2}WEATHER ${hr 2}
+${color2}Paganico:${color1} ${execi 300 ./script/weather.sh "EUR|IT|IT52|Paganico"}
+${color2}Grosseto:${color1} ${execi 300 ./script/weather.sh "EUR|IT|Grosseto"}
+${color2}Pisa:          ${color1} ${execi 300 ./script/weather.sh "EUR|IT|Pisa"}
+${color2}Gmail:${color1}  ${execi 180 python3 ./script/gmail.py}
+
+#$color1${font Ubuntu:size=12}${time %d}.$color${time %m}$color1${font Ubuntu:size=12}.${time %G}${font}
+${color2}SYSTEM ${hr 2}
+${color2}Nodename: ${color1}${nodename}
+${color2}Uptime: $color1 ${uptime_short}
+${color2}Conky Version$color1: ${conky_version}
+${color2}Kernel${color1}: ${kernel} on ${machine}
+${color2}Sysname${color2}: ${sysname}
+${hr 1}
+
+DISK : ${color2}SSD ${exec sudo hddtemp /dev/sda | cut -c11-31}$color1 ${hr 2}
+${color0}Temp$color1 ${exec sudo hddtemp /dev/sda | cut -c33-35}$color °C
+${color2}/${goto 80}$color2${fs_used /} $color2 of $color2${fs_size /}
+/home${goto 80}$color2${fs_used /home/linofex} $color1 of $color2${fs_size /home/linofex}
+/media/data${goto 80}$color2${fs_used /media/data} $color1 of $color${fs_size /media/data}
+$color3${hr 1}
+
+CPU ${color3}${hr 2}
+${color1}${cpugraph 15,  color1  FFFFFF}${color}
+${color}${font}Clock ${color1}${freq_g cpu}${color} GHz
+Core1 » ${color1} ${cpu cpu1}${color}%${goto 80} Temp ${color1}${execi 6 /usr/bin/sensors | grep 'Core 0' | awk '{print $3}' | cut -c2-3}${color} °C
+Core2 » ${color1} ${cpu cpu2}${color}%${goto 80} Temp ${color1}${execi 6 /usr/bin/sensors | grep 'Core 1' | awk '{print $3}' | cut -c2-3}${color} °C
+$color1${hr 1}
+
+${hr 2}
+# Per pc generici $color1 Fan$color speed ${color1}${execi 1 sensors | grep  'fan1'|awk '{print $2}'|cut -c1-4}$color RPM
+$color1 Fan$color speed ${color1}${ibm_fan}$color RPM #per pc con ibm_acpi
+
+$color1 MB $color Temp ${color1}${execi 1 sensors | grep  'temp1'| grep -v 'c' | awk '{print $2}' | cut -c2-3}$color °C
+$color1${hr 2}
+
+${color1}RAM${hr 2}
+${membar} e ${memperc}%
+
+
+
+$memfree
+${color}Processes ${processes}, Running ${running_processes}
+$color1${hr 1}
+
+${color1}PROCESSES ${hr 2}$color
+NAME${goto 140} PID${goto 180} CPU%${goto 230} MEM%
+${top name 1}${goto 140}${top pid 1}${goto 185}${top cpu 1} ${goto 235}${top mem 1}
+${top name 2}${goto 140}${top pid 2}${goto 185}${top cpu 2} ${goto 235}${top mem 2}
+${top name 3}${goto 140}${top pid 3}${goto 185}${top cpu 3} ${goto 235}${top mem 3}
+${top name 4}${goto 140}${top pid 4}${goto 185}${top cpu 4} ${goto 235}${top mem 4}
+${top name 5}${goto 140}${top pid 5}${goto 185}${top cpu 5} ${goto 235}${top mem 5}
+${top name 6}${goto 140}${top pid 6}${goto 185}${top cpu 6} ${goto 235}${top mem 6}
+${top name 7}${goto 140}${top pid 7}${goto 185}${top cpu 7} ${goto 235}${top mem 7}
+${top name 8}${goto 140}${top pid 8}${goto 185}${top cpu 8} ${goto 235}${top mem 8}
+${top name 9}${goto 140}${top pid 9}${goto 185}${top cpu 9} ${goto 235}${top mem 9}
+$color1${hr 1}
+
+${color1}NETWORK (LOCAL IP : ${addrs wlp3s0}) ${hr 2}$color
+Down: $color${downspeed wlp3s0} ${alignr}Up: ${upspeed wlp3s0}
+${downspeedgraph wlp3s0 25,140 000000 ffffff} ${alignr}${upspeedgraph wlp3s0
+25,140 000000 ffffff}$color
+Total: ${totaldown wlp3s0} ${alignr}Total: ${totalup eth0wlp3s0}
+$color1${hr 1}
+
+
+
+
+
+
+
