@@ -1,0 +1,111 @@
+conky.config = {
+-- Conky settings #
+	background = true,
+	update_interval = 1,
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
+	double_buffer = true,
+	no_buffers = true,
+
+	text_buffer_size = 2048,
+	--imlib_cache_size 0
+
+	temperature_unit = 'celsius',
+
+-- Window specifications #
+	own_window_class = 'conky_semi',
+	own_window = true,--prima era yes
+	own_window_type = 'normal',
+	own_window_transparent = true,
+	own_window_argb_visual = true,
+	own_window_argb_value = 190,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+	border_inner_margin = 0,
+	border_outer_margin = 0,
+
+	minimum_width = 260, minimum_height = 500,
+	maximum_width = 260,
+
+	alignment = 'top_left',
+	gap_x = 300,
+	gap_y = 100,
+
+-- Graphics settings #
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+
+-- Text settings #
+	use_xft = true,
+	override_utf8_locale = true,
+	font = 'Ubuntu:size=8',
+	xftalpha = 0.8,
+	uppercase = false,
+
+	temperature_unit = 'celsius',
+
+	default_color = '#FFFFFF',
+	color1 = '#727272',
+	color2 = '#FFFFFF',
+	color3 = 'red',
+
+-- Lua Load  #
+--lua_load ~/.conky/rings0-v1.2.1.lua
+--lua_draw_hook_pre ring_stats
+
+	
+
+	default_bar_width = 50,
+
+};
+
+conky.text = [[
+$color${font Ubuntu:size=11}${time %e %B %Y   %A    }${color3}${time    %H:%M }
+#$color1${hr 3}
+#${time %d}.$color3${time %m}$color${font Ubuntu:size=12}.${time %G}${font}
+$color${hr 1}
+${color2}${font Ubuntu:size=10}WEATHER${font} ${hr 2}
+${color2}Paganico:${color1} ${execi 300 ~/.conky/scripts/weather.sh "EUR|IT|IT52|Paganico"}
+${color2}Grosseto:${color1} ${execi 300 ~/.conky/scripts/weather.sh "EUR|IT|Grosseto"}
+${color2}Pisa:        ${color1} ${execi 300 ~/.conky/scripts/weather.sh "EUR|IT|Pisa"}
+${color3}Gmail:${color1}       ${execi 180 python3 ~/.conky/scripts/gmail.py}
+$color${hr 2}
+
+${color2}${font Ubuntu:size=10}SYSTEM${font} ${hr 2}
+${color2}Hostname: ${color1}${nodename}
+${color2}Uptime: $color3 ${uptime_short}
+${color2}Conky Version$color1: ${conky_version}
+${color2}Kernel${color1}: ${kernel} on ${machine}
+#${color2}Distro${color2}: ${distribution}
+$color${hr 2}
+
+${color}${font Ubuntu:size=10}DISK:${font} ${color2}SSD ${exec sudo hddtemp /dev/sda | cut -c11-17} $color3|$color ${fs_bar 10,40}$color1  $fs_used_perc$color0 %$color1 ${color0}$color3|$color Temp$color3 ${exec sudo hddtemp /dev/sda | cut -c33-36}$color °C ${hr 2}
+Read: $color1${diskio_read} ${alignr}${goto 180} ${color}Write:$color1 ${diskio_write}
+${diskiograph_read /dev/sda 15,100 000000 ffffff, -l  -t }${alignr}${diskiograph_write /dev/sda 15,100 000000 ffffff, -l  -t }
+${color2}/${goto 90}$color2${fs_used /} $color1 of $color2${fs_size /} 
+#R:${diskio_read /dev/sda1}${goto 250} W:${diskio_write /dev/sda1}
+/home${goto 90}$color2${fs_used /home/linofex} $color1  of $color2${fs_size /home/linofex} 
+#R:${diskio_read /dev/sda2}${goto 250} W:${diskio_write /dev/sda2}
+/media/data${goto 90}$color2${fs_used /media/data} $color1 of $color${fs_size /media/data} 
+#R:${diskio_read /dev/sda3}${goto 250} W:${diskio_write /dev/sda3}
+$color${hr 2}
+
+${color}${font Ubuntu:size=10}CPU:${font} ${color3}@ ${color1}${freq_g cpu}${color} GHz${color1}${cpugraph 10,  color1  FFFFFF}${color}
+
+Core1 » ${cpubar cpu1 10,90} ${color1} ${cpu cpu1}${color}${goto 153}%${goto 165}    Temp ${color1}${execi 6 /usr/bin/sensors | grep 'Core 0' | awk '{print $3}' | cut -c2-3}${color} °C
+Core2 » ${cpubar cpu2 10,90} ${color1} ${cpu cpu2}${color}${goto 153}%${goto 165}    Temp ${color1}${execi 6 /usr/bin/sensors | grep 'Core 1' | awk '{print $3}' | cut -c2-3}${color} °C
+$color${hr 2}
+
+${hr 2}
+# Per pc generici ${color1}Fan$color speed ${color3}${execi 1 sensors | grep  'fan1'|awk '{print $2}'|cut -c1-4}$color 
+${color}Fan$color1 speed: ${color3}${ibm_fan}$color RPM #per pc con ibm_acpi
+#$color1 MB $color Temp ${color1}${execi 1 sensors | grep  'temp1'| grep -v 'c' | awk '{print $2}' | cut -c2-3}$color °C
+
+Battery 0: ${battery_bar} ${battery_percent BAT0}%
+Battery 1: ${battery_bar} ${battery_percent BAT1}%
+AC power: $color3${acpiacadapter}
+$color${hr 2}
+
+]]
