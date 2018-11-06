@@ -62,12 +62,13 @@ conky.config = {
 };
 
 conky.text = [[
-${color}${font Ubuntu:size=10}RAM${font}$color1${memgraph 10, 000000,ffffff}
+
+${color}${font Haettenschweiler:size=12}RAM${font}$color1${memgraph 10, 000000,ffffff}
 $color1$mem$color of${color1} $memmax${color} ${membar 8, 70} $color3${memperc}$color%
 ${color}Processes ${processes}, Running ${running_processes}
 $color${hr 2}
-
-${color}${font Ubuntu:size=10}PROCESSES${font} ${hr 2}$color
+		
+${color}${font Haettenschweiler:size=12}PROCESSES${font} ${hr 2}$color
 ${color1}NAME${goto 113} PID${goto 153} ${color1}CPU%${goto 202}$color1 MEM%${color0}
 ${top name 1}${color}${goto 110}${top pid 1}${goto 155}${color3}${top cpu 1}${color} ${goto 205}${top mem 1}
 ${top name 2}${goto 110}${top pid 2}${goto 155}${top cpu 2} ${goto 205}${top mem 2}
@@ -79,11 +80,10 @@ ${top name 5}${goto 110}${top pid 5}${goto 155}${top cpu 5} ${goto 205}${top mem
 #${top name 8}${goto 110}${top pid 8}${goto 155}${top cpu 8} ${goto 205}${top mem 8}
 #${top name 9}${goto 110}${top pid 9}${goto 185}${top cpu 9} ${goto 205}${top mem 9}
 $color${hr 2}
-#${color1}BATTERY${hr 2}$color
-#BAT0 $color1${battery_bar 10, 70, 0}  - $color0 BAT1$color1 ${battery_bar 10, 70, 1}
+
 #$color1${hr 1}
 
-${color}${font Ubuntu:size=10}NETWORK${font} (Essid: ${wireless_essid wlp3s0}) ${hr 2}$color
+${color}${font Haettenschweiler:size=12}NETWORK${font} (Essid: $color3${wireless_essid wlp3s0}$color) ${hr 2}$color
 Local IP : ${addrs wlp3s0}
 Public IP : ${exec wget http://ipinfo.io/ip -qO -}
 ${color}Quality: $color3${wireless_link_qual wlp3s0}%
@@ -94,18 +94,19 @@ Total: ${totaldown wlp3s0} ${alignr}Total: ${totalup eth0wlp3s0}
 $color${hr 2}
 
 ${if_running spotify}\
-${color0}${font Ubuntu:size=10}MUSIC ${font}$color${hr 2}$color
+${color0}${font Haettenschweiler:size=12}MUSIC ${font}$color${hr 2}$color
 	#${voffset -38}
-	${image ~/.conky/scripts/spotify_icon.png -p 5,315 -s 30x30}\
+	${image ~/.conky/scripts/spotify_icon.png -p 5,353 -s 30x30}\
 	${goto 50}${color3}Title:  ${color} ${exec ~/.conky/scripts/title.sh}${font}${voffset 12}\
 	${goto 50}${color3}Artist:${color} ${exec ~/.conky/scripts/artist.sh}${font}${voffset -0}
 $color${hr 2}
 ${endif}\
 
-${color0}${font Ubuntu:size=10}TO DO LIST${font} $color3${execi 30 wc -l /home/linofex/TODO.txt | cut -c1-2} $color${hr 2}$color
+${color0}${font Haettenschweiler:size=12}TO DO LIST${font} $color3${execi 30 wc -l /home/linofex/TODO.txt | cut -c1-2} $color${hr 2}$color
 ${color1}${execi 300 cat /home/linofex/TODO.txt}
 $color${hr 2}
 #${rss http://feeds.reuters.com/reuters/topNews 1 item_titles 8}
+
 
 
 ]];
