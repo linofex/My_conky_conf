@@ -18,7 +18,7 @@ conky.config = {
 	own_window_type = 'normal',
 	own_window_transparent = true,
 	own_window_argb_visual = true,
-	own_window_argb_value = 128,
+	own_window_argb_value = 190,
 	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
 
 	border_inner_margin = 0,
@@ -36,7 +36,6 @@ conky.config = {
 	draw_outline = false,
 	draw_borders = false,
 	draw_graph_borders = false,
-	default_bar_width = 50,
 
 -- Text settings #
 	use_xft = true,
@@ -56,18 +55,22 @@ conky.config = {
 --lua_load ~/.conky/rings0-v1.2.1.lua
 --lua_draw_hook_pre ring_stats
 
+	
+
+	default_bar_width = 50,
+
 };
 
 conky.text = [[
 $color${font Ubuntu:size=11}${time %e %B %Y   %A    }${color3}${time    %H:%M }
-#$color1${hrhttps://github.com/linofex/My_conky_conf.git 3}
+#$color1${hr 3}
 #${time %d}.$color3${time %m}$color${font Ubuntu:size=12}.${time %G}${font}
 $color${hr 1}
 ${color2}${font Ubuntu:size=10}WEATHER${font} ${hr 2}
-${color2}Paganico:${color1} ${execi 300 ./.scripts/weather.sh "EUR|IT|IT52|Paganico"}
-${color2}Grosseto:${color1} ${execi 300 ./.scripts/weather.sh "EUR|IT|Grosseto"}
-${color2}Pisa:        ${color1} ${execi 300 ./.scripts/weather.sh "EUR|IT|Pisa"}
-${color3}Gmail:${color1}       ${execi 180 python3 ./.scripts/gmail.py}
+${color2}Paganico:${color1} ${execi 300 /home/linofex/.conky/scripts/weather.sh "EUR|IT|IT52|Paganico"}
+${color2}Grosseto:${color1} ${execi 300 /home/linofex/.conky/scripts/weather.sh "EUR|IT|Grosseto"}
+${color2}Pisa:        ${color1} ${execi 300 /home/linofex/.conky/scripts/weather.sh "EUR|IT|Pisa"}
+${color3}Gmail:${color1}       ${execi 180 python3 /home/linofex/.conky/scripts/gmail.py}
 $color${hr 2}
 
 ${color2}${font Ubuntu:size=10}SYSTEM${font} ${hr 2}
@@ -136,9 +139,9 @@ $color${hr 2}
 ${if_running spotify}\
 ${color0}${font Ubuntu:size=10}MUSIC ${font}$color${hr 2}$color
 	#${voffset -38}
-	${image ~/.scripts/spotify_icon.png -p 10,759 -s 30x30}\
-	${goto 50}${color3}Title:  ${color} ${exec ~/.scripts/title.sh}${font}${voffset 12}\
-	${goto 50}${color3}Artist:${color} ${exec ~/.scripts/artist.sh}${font}${voffset -0}
+	${image /home/linofex/.conky/scripts/spotify_icon.png -p 10,759 -s 30x30}\
+	${goto 50}${color3}Title:  ${color} ${exec /home/linofex/.conky/scripts/title.sh}${font}${voffset 12}\
+	${goto 50}${color3}Artist:${color} ${exec /home/linofex/.conky/scripts/artist.sh}${font}${voffset -0}
 $color${hr 2}
 ${endif}\
 
