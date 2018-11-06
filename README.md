@@ -1,5 +1,6 @@
 # Myconky_configuration
-Simple conky configuration with conky varilables, two small scripts for mails and weather and terminal command.
+For my Lenovo T450
+Simple conky configuration with conky varilables, two small scripts for mails and weather and terminal commands.
 Spotify scripts from: https://github.com/Madh93/conky-spotify
 
 Conky version = 1.10.1
