@@ -103,8 +103,8 @@ ${hr 2}
 ${color}Fan$color1 speed: ${color3}${ibm_fan}$color RPM #per pc con ibm_acpi
 #$color1 MB $color Temp ${color1}${execi 1 sensors | grep  'temp1'| grep -v 'c' | awk '{print $2}' | cut -c2-3}$color °C
 
-Battery 0: ${battery_bar} ${battery_percent BAT0}%
-Battery 1: ${battery_bar} ${battery_percent BAT1}%
+Battery 0: ${battery_bar BAT0} ${battery_percent BAT0}%
+Battery 1: ${battery_bar BAT1} ${battery_percent BAT1}%
 AC power: $color3${acpiacadapter}
 $color${hr 2}
 
